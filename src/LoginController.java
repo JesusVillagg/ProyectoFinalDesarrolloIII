@@ -31,7 +31,7 @@ public class LoginController {
 
     public void setModoAdmin(boolean activo) {
         this.esModoAdmin = activo;
-        System.out.println("Modo Admin activado: " + activo); // Para verificar en consola
+        System.out.println("Modo Admin activado: " + activo);
     }
 
     @FXML
@@ -49,12 +49,9 @@ public class LoginController {
             if (conn != null) {
                 String sql = "";
 
-                // AQUÍ DECIDIMOS A QUÉ TABLA PREGUNTAR
                 if (esModoAdmin) {
-                    // Si es admin, buscamos en la tabla Administrador
                     sql = "SELECT * FROM Administrador WHERE usuario = ? AND password = ?";
                 } else {
-                    // Si es cliente, buscamos en la tabla Cliente
                     sql = "SELECT * FROM Cliente WHERE correo = ? AND password = ?";
                 }
 
@@ -65,7 +62,9 @@ public class LoginController {
                 ResultSet resultado = statement.executeQuery();
 
                 if (resultado.next()) {
-                    // SI ENTRÓ CORRECTAMENTE:
+                    int idEncontrado = resultado.getInt("id_cliente");
+                    Sesion.setIdCliente(idEncontrado);
+
                     if (esModoAdmin) {
                         abrirMenuAdmin();
                     } else {
@@ -142,7 +141,6 @@ public class LoginController {
             newStage.setScene(newScene);
             newStage.initModality(Modality.WINDOW_MODAL);
 
-            // Cerrar el login actual
             Stage currentStage = (Stage) usuarioText.getScene().getWindow();
             currentStage.close();
 
