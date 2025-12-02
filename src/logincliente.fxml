@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,26 +11,42 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="299.0" prefWidth="478.0" style="-fx-background-color: #5A7D77;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
-      <ImageView fitHeight="128.0" fitWidth="192.0" layoutX="143.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="192.0" layoutX="-27.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Downloads/logo%20(1).png" />
          </image>
       </ImageView>
-      <Label layoutX="58.0" layoutY="104.0" text="Bienvenido a Casa de Jade" textFill="WHITE">
+      <Label layoutX="120.0" layoutY="32.0" text="Bienvenido a Casa de Jade" textFill="WHITE">
          <font>
-            <Font name="Bookshelf Symbol 7" size="32.0" />
+            <Font name="Bookshelf Symbol 7" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="161.0" prefHeight="22.0" prefWidth="412.0" text="Fragancias de calidad seleccionadas para definir tu estilo." textFill="WHITE">
+      <TextField fx:id="usuarioText" layoutX="246.0" layoutY="104.0" />
+      <PasswordField fx:id="contrasenaText" layoutX="246.0" layoutY="159.0" />
+      <Label layoutX="109.0" layoutY="103.0" text="Usuario" textFill="#f7f3f3">
          <font>
-            <Font name="Bookshelf Symbol 7" size="17.0" />
+            <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="196.0" layoutY="214.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="22.0" prefWidth="86.0" style="-fx-background-color: #ACFFCB;" text="Ingresar">
+      <Label layoutX="109.0" layoutY="161.0" text="Contraseña" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="Bookshelf Symbol 7" size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="242.0" layoutY="227.0" mnemonicParsing="false" onAction="#ingresar" style="-fx-background-color: #ACFFCB;" text="Ingresar">
+         <font>
+            <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="259.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="¿Eres administrador? si" textFill="WHITE" />
+      <Button layoutX="350.0" layoutY="227.0" mnemonicParsing="false" onAction="#salir" style="-fx-background-color: #FFA9A5;" text="Salir">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="227.0" layoutY="63.0" text="Cliente" textFill="#f7f3f3">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -8,16 +8,14 @@ public class LoginApplication extends Application{
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logincliente.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("loginMain.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        primaryStage.setTitle("Casa de Jade - Login Cliente");
+        primaryStage.setTitle("Bienvenido a Casa de Jade");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        LoginController controller = fxmlLoader.getController();
-        controller.setPrimaryStage(primaryStage);
     }
 
     public static void main(String[] args) {

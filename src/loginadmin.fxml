@@ -21,8 +21,8 @@
             <Font name="Bookshelf Symbol 7" size="21.0" />
          </font>
       </Label>
-      <TextField layoutX="246.0" layoutY="104.0" />
-      <PasswordField layoutX="246.0" layoutY="159.0" />
+      <TextField fx:id="usuarioText" layoutX="246.0" layoutY="104.0" />
+      <PasswordField fx:id="contrasenaText" layoutX="246.0" layoutY="159.0" />
       <Label layoutX="109.0" layoutY="103.0" text="Usuario" textFill="#f7f3f3">
          <font>
             <Font size="19.0" />
@@ -33,12 +33,12 @@
             <Font name="Bookshelf Symbol 7" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="242.0" layoutY="227.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Ingresar">
+      <Button layoutX="242.0" layoutY="227.0" mnemonicParsing="false" onAction="#ingresar" style="-fx-background-color: #ACFFCB;" text="Ingresar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="350.0" layoutY="227.0" mnemonicParsing="false" style="-fx-background-color: #FFA9A5;" text="Salir">
+      <Button layoutX="350.0" layoutY="227.0" mnemonicParsing="false" onAction="#salir" style="-fx-background-color: #FFA9A5;" text="Salir">
          <font>
             <Font size="14.0" />
          </font>

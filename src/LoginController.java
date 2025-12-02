@@ -23,48 +23,58 @@ public class LoginController {
 
     private Stage primaryStage;
 
+    private boolean esModoAdmin = false;
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
+    public void setModoAdmin(boolean activo) {
+        this.esModoAdmin = activo;
+        System.out.println("Modo Admin activado: " + activo); // Para verificar en consola
+    }
+
     @FXML
     protected void ingresar() {
-        String correoInput = usuarioText.getText();
-        String passwordInput = contrasenaText.getText();
+        String usuario = usuarioText.getText();
+        String password= contrasenaText.getText();
 
-        if (correoInput.isEmpty()) {
-            mostrarAlerta("Por favor ingresa tu correo.", "Campo vacío", Alert.AlertType.WARNING);
-            usuarioText.requestFocus();
-            return;
-        }
-        if (passwordInput.isEmpty()) {
-            mostrarAlerta("Por favor ingresa tu contraseña.", "Campo vacío", Alert.AlertType.WARNING);
-            contrasenaText.requestFocus();
+        if (usuario.isEmpty() || password.isEmpty()) {
+            mostrarAlerta("Por favor llena todos los campos.", "Campos vacíos", Alert.AlertType.WARNING);
             return;
         }
 
         try {
             Connection conn = ConexionDB.getConnection();
-
             if (conn != null) {
-                String sql = "SELECT * FROM Cliente WHERE correo = ? AND password = ?";
+                String sql = "";
+
+                // AQUÍ DECIDIMOS A QUÉ TABLA PREGUNTAR
+                if (esModoAdmin) {
+                    // Si es admin, buscamos en la tabla Administrador
+                    sql = "SELECT * FROM Administrador WHERE usuario = ? AND password = ?";
+                } else {
+                    // Si es cliente, buscamos en la tabla Cliente
+                    sql = "SELECT * FROM Cliente WHERE correo = ? AND password = ?";
+                }
+
                 PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setString(1, correoInput);
-                statement.setString(2, passwordInput);
+                statement.setString(1, usuario);
+                statement.setString(2, password);
 
                 ResultSet resultado = statement.executeQuery();
 
                 if (resultado.next()) {
-                    abrirCatalogo();
+                    // SI ENTRÓ CORRECTAMENTE:
+                    if (esModoAdmin) {
+                        abrirMenuAdmin();
+                    } else {
+                        abrirMenuCliente();
+                    }
                 } else {
-                    mostrarAlerta("Correo o contraseña incorrectos.", "Error de acceso", Alert.AlertType.ERROR);
+                    mostrarAlerta("Usuario/Correo o contraseña incorrectos.", "Error de acceso", Alert.AlertType.ERROR);
                 }
-
-                resultado.close();
-                statement.close();
                 conn.close();
-            } else {
-                mostrarAlerta("No hay conexión con la base de datos.", "Error Crítico", Alert.AlertType.ERROR);
             }
 
         } catch (SQLException e) {
@@ -73,13 +83,34 @@ public class LoginController {
         }
     }
 
-    private void abrirCatalogo() {
+    @FXML
+    protected void salir() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("catalogoCliente.fxml"));
-            Scene mainScene = new Scene(fxmlLoader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("loginMain.fxml"));
+            javafx.scene.Parent root = loader.load();
 
+            Stage stage = (Stage) usuarioText.getScene().getWindow();
+
+            stage.setTitle("Bienvenido a Casa de Jade");
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error al intentar regresar al inicio.");
+        }
+    }
+
+    private void abrirMenuCliente() {
+        try {
+            if (primaryStage == null) {
+                primaryStage = (Stage) usuarioText.getScene().getWindow();
+            }
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menucliente.fxml"));
+            Scene mainScene = new Scene(fxmlLoader.load());
             Stage mainStage = new Stage();
-            mainStage.setTitle("Casa de Jade - Catálogo");
+            mainStage.setTitle("Casa de Jade - Menú");
             mainStage.setScene(mainScene);
 
             mainStage.setOnCloseRequest((WindowEvent event) -> {
@@ -98,6 +129,30 @@ public class LoginController {
         }
     }
 
+    private void abrirMenuAdmin() {
+        abrirVentana("menuadmin.fxml", "Casa de Jade - Panel de Administración");
+    }
+
+    private void abrirVentana(String fxml, String titulo) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
+            Scene newScene = new Scene(fxmlLoader.load());
+            Stage newStage = new Stage();
+            newStage.setTitle(titulo);
+            newStage.setScene(newScene);
+            newStage.initModality(Modality.WINDOW_MODAL);
+
+            // Cerrar el login actual
+            Stage currentStage = (Stage) usuarioText.getScene().getWindow();
+            currentStage.close();
+
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("No se pudo abrir la siguiente ventana: " + fxml, "Error", Alert.AlertType.ERROR);
+        }
+    }
+
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -108,4 +163,5 @@ public class LoginController {
         }
         alerta.showAndWait();
     }
+
 }
