@@ -34,6 +34,8 @@ public class LoginController {
         System.out.println("Modo Admin activado: " + activo);
     }
 
+    // LoginController.java (Método ingresar() modificado)
+
     @FXML
     protected void ingresar() {
         String usuario = usuarioText.getText();
@@ -44,36 +46,39 @@ public class LoginController {
             return;
         }
 
-        try {
-            Connection conn = ConexionDB.getConnection();
+        try (Connection conn = ConexionDB.getConnection()) {
             if (conn != null) {
                 String sql = "";
+                String columnaId = "";
 
                 if (esModoAdmin) {
-                    sql = "SELECT * FROM Administrador WHERE usuario = ? AND password = ?";
+                    sql = "SELECT id_administrador FROM Administrador WHERE usuario = ? AND password = ?";
+                    columnaId = "id_administrador"; // Para el Administrador
                 } else {
-                    sql = "SELECT * FROM Cliente WHERE correo = ? AND password = ?";
+                    sql = "SELECT id_cliente FROM Cliente WHERE correo = ? AND password = ?";
+                    columnaId = "id_cliente"; // Para el Cliente
                 }
 
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setString(1, usuario);
-                statement.setString(2, password);
+                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                    statement.setString(1, usuario);
+                    statement.setString(2, password);
 
-                ResultSet resultado = statement.executeQuery();
+                    ResultSet resultado = statement.executeQuery();
 
-                if (resultado.next()) {
-                    int idEncontrado = resultado.getInt("id_cliente");
-                    Sesion.setIdCliente(idEncontrado);
+                    if (resultado.next()) {
+                        int idEncontrado = resultado.getInt(columnaId);
+                        Sesion.setIdCliente(idEncontrado);
 
-                    if (esModoAdmin) {
-                        abrirMenuAdmin();
+                        if (esModoAdmin) {
+                            abrirMenuAdmin();
+                        } else {
+                            abrirMenuCliente();
+                        }
                     } else {
-                        abrirMenuCliente();
+                        mostrarAlerta("Usuario/Correo o contraseña incorrectos.", "Error de acceso", Alert.AlertType.ERROR);
                     }
-                } else {
-                    mostrarAlerta("Usuario/Correo o contraseña incorrectos.", "Error de acceso", Alert.AlertType.ERROR);
                 }
-                conn.close();
+
             }
 
         } catch (SQLException e) {
