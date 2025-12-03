@@ -21,25 +21,40 @@
             <TableColumn prefWidth="90.4000244140625" text="ID Proveedor" />
         </columns>
       </TableView>
-      <Label layoutX="118.0" layoutY="149.0" text="Precio Venta" />
-      <Label layoutX="120.0" layoutY="114.0" text="Marca" />
-      <Label layoutX="118.0" layoutY="80.0" text="Nombre Perfume" />
-      <javafx.scene.control.TextField layoutX="234.0" layoutY="76.0" />
-      <javafx.scene.control.TextField layoutX="234.0" layoutY="110.0" />
-      <javafx.scene.control.TextField layoutX="234.0" layoutY="145.0" />
-      <Label layoutX="122.0" layoutY="191.0" text="Stock" />
-      <javafx.scene.control.TextField layoutX="234.0" layoutY="187.0" />
-      <Label layoutX="122.0" layoutY="228.0" text="ID Proveedor" />
-      <ComboBox layoutX="234.0" layoutY="224.0" prefWidth="150.0" />
+      <Label layoutX="107.0" layoutY="147.0" text="Precio Venta">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="108.0" layoutY="112.0" text="Marca">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="108.0" layoutY="78.0" text="Nombre Perfume">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <javafx.scene.control.TextField layoutX="249.0" layoutY="75.0" />
+      <javafx.scene.control.TextField layoutX="249.0" layoutY="109.0" />
+      <javafx.scene.control.TextField layoutX="249.0" layoutY="144.0" />
+      <Label layoutX="110.0" layoutY="189.0" text="Stock">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <javafx.scene.control.TextField layoutX="249.0" layoutY="186.0" />
+      <Label layoutX="105.0" layoutY="226.0" text="ID Proveedor">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ComboBox layoutX="249.0" layoutY="223.0" prefWidth="150.0" />
       <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
       <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
       <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
       <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
-      <Label layoutX="323.0" layoutY="32.0" text="Gestión de Productos">
+      <Label layoutX="252.0" layoutY="28.0" text="Gestión de Productos">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="51.0" layoutY="37.0" mnemonicParsing="false" onAction="#recargarInicio" text="Regresar" />
+      <Button layoutX="44.0" layoutY="28.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-background-color: #F0FFF0; -fx-border-color: #808080; -fx-border-radius: 10;" text="Menú" />
    </children>
 </AnchorPane>

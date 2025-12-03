@@ -8,11 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
+
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CarritoController {
        @FXML private TableView<ProductoCarrito> tablaCarrito;
@@ -24,6 +25,7 @@ public class CarritoController {
        @FXML private Label lblSubtotal;
        @FXML private Label lblEnvio;
        @FXML private Label lblTotalFinal;
+       @FXML private Pane panelContenido;
 
        private final double ENVIO_FIJO = 150.00;
        private ObservableList<ProductoCarrito> misProductos = FXCollections.observableArrayList();
@@ -35,28 +37,41 @@ public class CarritoController {
 
            colProducto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
            colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-           colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
            colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+           colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
 
-           tablaCarrito.setEditable(true);
-           colCantidad.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-           colCantidad.setOnEditCommit(event ->{
-               //obtener producto
-               ProductoCarrito producto = event.getRowValue();
-               if (event.getNewValue() > 0) {
-                   producto.setCantidad(event.getNewValue());
-                   calcularTotales(); //
-                   tablaCarrito.refresh(); //
-               } else {
-                   tablaCarrito.refresh();
-               }
-           });
-           lblEnvio.setText(String.format("$%.2f", ENVIO_FIJO));
-           calcularTotales();
 
        }
+    @FXML
+    void seguirComprando(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("catalogoCliente.fxml"));
+            Parent vistaCatalogo = loader.load();
 
+            Node boton = (Node) event.getSource();
+            Scene ventanaPrincipal = boton.getScene();
+            Pane panelPrincipal = (Pane) ventanaPrincipal.lookup("#panelContenido");
+
+            if (panelPrincipal != null) {
+                panelPrincipal.getChildren().clear();
+                panelPrincipal.getChildren().add(vistaCatalogo);
+
+                if (vistaCatalogo instanceof javafx.scene.layout.Region) {
+                    javafx.scene.layout.Region region = (javafx.scene.layout.Region) vistaCatalogo;
+
+                    // Amarramos ancho y alto
+                    region.prefWidthProperty().bind(panelPrincipal.widthProperty());
+                    region.prefHeightProperty().bind(panelPrincipal.heightProperty());
+                }
+
+            } else {
+                System.out.println("Error: No encontré el panelContenido.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void calcularTotales() {
            double subtotal=0;
 
@@ -71,18 +86,47 @@ public class CarritoController {
     }
 
     @FXML
-    public void btnEliminar(){
+    public void btnEliminar(ActionEvent event){
            ProductoCarrito productoSeleccionado = tablaCarrito.getSelectionModel().getSelectedItem();
 
-           if(productoSeleccionado != null){
-               misProductos.remove(productoSeleccionado);
-               calcularTotales();
-           }else{
-               Alert alerta = new Alert(Alert.AlertType.WARNING);
-               alerta.setTitle("Cuidado");
-               alerta.setContentText("Selecciona un producto");
-               alerta.show();
-           }
+        // no se selecciono nada
+        if (productoSeleccionado == null) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Aviso");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Por favor selecciona un producto de la tabla.");
+
+            //  centrar la alerta
+            Stage stagePrincipal = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            alerta.initOwner(stagePrincipal);
+
+            alerta.showAndWait();
+            return;
+        }
+
+        // confirmacion
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Eliminar producto");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Estás seguro de que quieres eliminar '" + productoSeleccionado.getNombre() + "'?");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+
+        // eliminar yei
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+
+            String nombreProducto = productoSeleccionado.getNombre();
+            misProductos.remove(productoSeleccionado);
+            calcularTotales();
+
+            Alert exito = new Alert(Alert.AlertType.INFORMATION);
+            exito.setTitle("Éxito");
+            exito.setHeaderText(null);
+            exito.setContentText(nombreProducto + " ha sido eliminado del carrito.");
+
+            exito.initOwner(((Stage) ((Node) event.getSource()).getScene().getWindow()));
+            exito.show();
+        }
     }
 
     @FXML

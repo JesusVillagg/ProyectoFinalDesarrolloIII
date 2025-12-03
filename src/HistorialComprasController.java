@@ -11,8 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class HistorialComprasController {
+
     @FXML private TableView<Venta> tablaPedidos;
     @FXML private TableColumn<Venta, Integer> colId;
     @FXML private TableColumn<Venta, String> colFecha;
@@ -161,8 +162,34 @@ public class HistorialComprasController {
     }
 
     @FXML
-    void irACatalogo(ActionEvent event) {
-        cambiarVentana(event, "catalogoCliente.fxml", "Nuevo Pedido");
+    void btnNuevoPedido(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("catalogoCliente.fxml"));
+            Parent vistaCatalogo = loader.load();
+
+            Node boton = (Node) event.getSource();
+            Scene ventanaPrincipal = boton.getScene();
+            Pane panelPrincipal = (Pane) ventanaPrincipal.lookup("#panelContenido");
+
+            if (panelPrincipal != null) {
+                panelPrincipal.getChildren().clear();
+                panelPrincipal.getChildren().add(vistaCatalogo);
+
+                if (vistaCatalogo instanceof javafx.scene.layout.Region) {
+                    javafx.scene.layout.Region region = (javafx.scene.layout.Region) vistaCatalogo;
+
+                    // Amarramos ancho y alto
+                    region.prefWidthProperty().bind(panelPrincipal.widthProperty());
+                    region.prefHeightProperty().bind(panelPrincipal.heightProperty());
+                }
+
+            } else {
+                System.out.println("Error: No encontré el panelContenido.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

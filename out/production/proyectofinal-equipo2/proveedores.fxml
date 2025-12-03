@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProveedorController">
     <children>
-        <TableView fx:id="tablaProveedores" layoutX="59.0" layoutY="301.0" prefHeight="200.0" prefWidth="567.0">
+        <TableView fx:id="tablaProveedores" layoutX="69.0" layoutY="300.0" prefHeight="200.0" prefWidth="547.0">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="82.4000244140625" text="ID Proveedor" />
                 <TableColumn fx:id="colNombre" prefWidth="132.0" text="Nombre Empresa" />
@@ -19,23 +19,35 @@
             <TableColumn fx:id="colTelefono" prefWidth="130.0" text="Teléfono" />
             </columns>
         </TableView>
-        <Label layoutX="118.0" layoutY="178.0" text="Correo" />
-        <Label layoutX="119.0" layoutY="130.0" text="Dirección" />
-        <Label layoutX="118.0" layoutY="89.0" text="Nombre Empresa" />
-        <javafx.scene.control.TextField fx:id="nombreText" layoutX="234.0" layoutY="85.0" />
-        <javafx.scene.control.TextField fx:id="direccionText" layoutX="234.0" layoutY="126.0" />
-        <javafx.scene.control.TextField fx:id="correoText" layoutX="234.0" layoutY="174.0" />
-        <Label layoutX="119.0" layoutY="227.0" text="Teléfono" />
-        <javafx.scene.control.TextField fx:id="telefonoText" layoutX="234.0" layoutY="223.0" />
-        <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
-        <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
-        <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
-        <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
-        <Label layoutX="276.0" layoutY="31.0" text="Gestión de Proveedores">
+        <Label alignment="CENTER" layoutX="94.0" layoutY="177.0" text="Correo">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label alignment="CENTER" layoutX="94.0" layoutY="129.0" text="Dirección">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label alignment="CENTER" layoutX="94.0" layoutY="88.0" text="Nombre Empresa">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <javafx.scene.control.TextField fx:id="nombreText" alignment="CENTER" layoutX="234.0" layoutY="85.0" />
+        <javafx.scene.control.TextField fx:id="direccionText" alignment="CENTER" layoutX="234.0" layoutY="126.0" />
+        <javafx.scene.control.TextField fx:id="correoText" alignment="CENTER" layoutX="234.0" layoutY="174.0" />
+        <Label alignment="CENTER" layoutX="96.0" layoutY="226.0" text="Teléfono">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <javafx.scene.control.TextField fx:id="telefonoText" alignment="CENTER" layoutX="234.0" layoutY="223.0" />
+        <Button alignment="CENTER" layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
+        <Button alignment="CENTER" layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
+        <Button alignment="CENTER" layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarProveedor" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
+        <Button alignment="CENTER" layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+        <Label layoutX="243.0" layoutY="22.0" text="Gestión de Proveedores">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-      <Button layoutX="33.0" layoutY="36.0" mnemonicParsing="false" onAction="#recargarInicio" text="Regresar" />
+      <Button layoutX="33.0" layoutY="36.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-background-color: #F0FFF0; -fx-border-color: #808080; -fx-border-radius: 10;" text="Menú" />
     </children>
 </AnchorPane>

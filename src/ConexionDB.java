@@ -29,7 +29,7 @@ public class ConexionDB {
         }
         return conexion;
     }
-    // Método para contar cuántos registros hay en una tabla
+    // contar cuántos registros hay en una tabla
     public static int contarRegistros(String nombreTabla) {
         int total = 0;
         String sql = "SELECT COUNT(*) FROM " + nombreTabla;

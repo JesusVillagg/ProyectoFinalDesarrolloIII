@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuAdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuAdminController">
    <left>
       <VBox prefHeight="386.0" prefWidth="142.0" style="-fx-background-color: #5A7D77;" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#irAMembresias" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="50.0" left="30.0" right="15.0" />
+                  <Insets bottom="50.0" left="30.0" right="15.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -41,15 +41,15 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#irAGestionProveedores" style="-fx-background-color: transparent;" text="Provedores" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="40.0" left="25.0" right="15.0" />
+                  <Insets bottom="50.0" left="25.0" right="15.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#regresarInicio" text="Volver a inicio">
+            <Button mnemonicParsing="false" onAction="#regresarInicio" style="-fx-border-radius: 10; -fx-border-color: gray;" text="Volver a Login">
                <VBox.margin>
-                  <Insets bottom="15.0" left="25.0" />
+                  <Insets bottom="15.0" left="25.0" top="30.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -63,37 +63,37 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="232.0" fitWidth="475.0" layoutX="234.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="186.0" fitWidth="293.0" layoutX="232.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagenes/fondomenu.png" />
                </image>
             </ImageView>
-            <Label layoutX="422.0" layoutY="109.0" text="Clientes Activos">
+            <Label layoutX="408.0" layoutY="109.0" text="Clientes Activos">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="289.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="275.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagenes/iconoperfume.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="444.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="430.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagenes/personaicono.png" />
                </image>
             </ImageView>
-            <Label layoutX="260.0" layoutY="107.0" text="Productos Totales">
+            <Label layoutX="246.0" layoutY="107.0" text="Productos Totales">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="294.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
+            <Label alignment="CENTER" layoutX="280.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="449.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="435.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
                <font>
                   <Font size="24.0" />
                </font>

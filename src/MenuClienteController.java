@@ -29,16 +29,23 @@ public class MenuClienteController {
 
     private void cargarEnPanel(String fxml) {
         try {
-            // Cargar el archivo FXML hijo
-            Parent vista = FXMLLoader.load(getClass().getResource(fxml));
 
-            // Limpiar el panel y agregar la nueva vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent vista = loader.load();
+
             panelContenido.getChildren().clear();
             panelContenido.getChildren().add(vista);
 
+            if (vista instanceof javafx.scene.layout.Region) {
+                javafx.scene.layout.Region regionVista = (javafx.scene.layout.Region) vista;
+
+                regionVista.prefWidthProperty().bind(panelContenido.widthProperty());
+                regionVista.prefHeightProperty().bind(panelContenido.heightProperty());
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error al cargar vista incrustada: " + fxml);
+            System.err.println("Error al cargar vista: " + fxml);
         }
     }
 
