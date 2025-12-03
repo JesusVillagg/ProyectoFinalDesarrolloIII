@@ -19,7 +19,7 @@
                   <Insets left="40.0" top="30.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../../../OneDrive/Imágenes/Screenshots/Captura%20de%20pantalla%202025-11-28%20114740.png" />
+                  <Image url="@imagenes/login1.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#irACatalogoAdmin" style="-fx-background-color: transparent;" text="Productos" textFill="WHITE">

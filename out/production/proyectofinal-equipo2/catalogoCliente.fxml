@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="211.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -20,7 +19,7 @@
          <children>
             <ImageView fitHeight="124.0" fitWidth="76.0" layoutX="64.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/71Bij08cMwL._AC_UF1000_1000_QL80_-removebg-preview.png" />
+                  <Image url="@imagenes/versace.png" />
                </image>
             </ImageView>
             <Label layoutX="68.0" layoutY="161.0" text="Versace Eros" />
@@ -28,7 +27,7 @@
             <Button layoutX="71.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="101.0" fitWidth="96.0" layoutX="53.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/61Q3ckTbVeL._AC_UF1000_1000_QL80_-removebg-preview.png" />
+                  <Image url="@imagenes/cloud.png" />
                </image>
             </ImageView>
             <Label layoutX="69.0" layoutY="379.0" text="Cloud Ariana" />
@@ -36,7 +35,7 @@
             <Button layoutX="73.0" layoutY="423.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="116.0" fitWidth="86.0" layoutX="194.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/valentino-removebg-preview.png" />
+                  <Image url="@imagenes/valentino.png" />
                </image>
             </ImageView>
             <Label layoutX="198.0" layoutY="161.0" text="Born in Roma" />
@@ -44,7 +43,7 @@
             <Button layoutX="200.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="116.0" fitWidth="62.0" layoutX="203.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/o-removebg-preview.png" />
+                  <Image url="@imagenes/tomford.png" />
                </image>
             </ImageView>
             <Label layoutX="211.0" layoutY="379.0" text="Tom Ford" />
@@ -52,7 +51,7 @@
             <Button layoutX="205.0" layoutY="423.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="152.0" fitWidth="137.0" layoutX="297.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/Y0685240_F068524009_E01_GHC-removebg-preview.png" />
+                  <Image url="@imagenes/sauvage.png" />
                </image>
             </ImageView>
             <Label layoutX="332.0" layoutY="161.0" text="Sauvage Dior" />
@@ -60,7 +59,7 @@
             <Button layoutX="335.0" layoutY="204.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="130.0" fitWidth="126.0" layoutX="442.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/Y0997166_C099700897_E01_GHC-removebg-preview.png" />
+                  <Image url="@imagenes/dior.png" />
                </image>
             </ImageView>
             <Label layoutX="477.0" layoutY="166.0" text="Miss Dior" />
@@ -68,7 +67,7 @@
             <Button layoutX="471.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="148.0" fitWidth="111.0" layoutX="310.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/68-large_default-removebg-preview.png" />
+                  <Image url="@imagenes/nautica.png" />
                </image>
             </ImageView>
             <Label layoutX="345.0" layoutY="379.0" text="Nautica" />
@@ -76,7 +75,7 @@
             <Button layoutX="335.0" layoutY="422.0" mnemonicParsing="false" style="-fx-background-color: #ACFFCB;" text="Comprar" />
             <ImageView fitHeight="109.0" fitWidth="111.0" layoutX="447.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/Carolina-Herrera-CH-perfume-mujer-removebg-preview.png" />
+                  <Image url="@imagenes/carolina.png" />
                </image>
             </ImageView>
             <Label layoutX="458.0" layoutY="379.0" text="Carolina Herrera" />

@@ -11,13 +11,12 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/openjfx-17.0.17_windows-x64_bin-sdk/javafx-sdk-17.0.17/lib" />
+          <root url="file://$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Downloads/openjfx-17.0.17_windows-x64_bin-sdk/javafx-sdk-17.0.17/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>

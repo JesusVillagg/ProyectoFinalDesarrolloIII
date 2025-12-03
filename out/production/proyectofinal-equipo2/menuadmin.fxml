@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuAdminController">
    <left>
       <VBox prefHeight="386.0" prefWidth="142.0" style="-fx-background-color: #5A7D77;" BorderPane.alignment="CENTER">
          <children>
@@ -19,10 +19,10 @@
                   <Insets left="40.0" top="30.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../../../OneDrive/Imágenes/Screenshots/Captura%20de%20pantalla%202025-11-28%20114740.png" />
+                  <Image url="@imagenes/login1.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Catálogo" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#irACatalogoAdmin" style="-fx-background-color: transparent;" text="Productos" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="50.0" left="25.0" right="15.0" top="50.0" />
                </VBox.margin>
@@ -30,15 +30,15 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Membresías " textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#irAMembresias" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="50.0" left="15.0" right="15.0" />
+                  <Insets bottom="50.0" left="30.0" right="15.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Provedores" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#irAGestionProveedores" style="-fx-background-color: transparent;" text="Provedores" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="40.0" left="25.0" right="15.0" />
                </VBox.margin>
@@ -46,7 +46,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Volver a inicio">
+            <Button mnemonicParsing="false" onAction="#regresarInicio" text="Volver a inicio">
                <VBox.margin>
                   <Insets bottom="15.0" left="25.0" />
                </VBox.margin>
