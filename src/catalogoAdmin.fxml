@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CatalogoAdminController">
+
+<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView layoutX="103.0" layoutY="298.0" prefHeight="200.0" prefWidth="480.0">
         <columns>
@@ -40,6 +41,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="51.0" layoutY="37.0" mnemonicParsing="false" onAction="#recargarInicio" text="Regresar" />
    </children>
 </AnchorPane>
