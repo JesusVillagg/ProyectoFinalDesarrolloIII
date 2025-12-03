@@ -18,5 +18,6 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/openjfx-17.0.17_windows-x64_bin-sdk/javafx-sdk-17.0.17/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>
