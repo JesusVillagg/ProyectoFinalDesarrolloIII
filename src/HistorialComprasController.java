@@ -187,4 +187,21 @@ public class HistorialComprasController {
         alert.show();
     }
 
+    @FXML
+    void recargarInicio(ActionEvent event) {
+        try {
+            //cargar el archivo principal
+            Parent root = FXMLLoader.load(getClass().getResource("/menucliente.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class ConexionDB {
 
@@ -26,6 +28,28 @@ public class ConexionDB {
             e.printStackTrace();
         }
         return conexion;
+    }
+    // Método para contar cuántos registros hay en una tabla
+    public static int contarRegistros(String nombreTabla) {
+        int total = 0;
+        String sql = "SELECT COUNT(*) FROM " + nombreTabla;
+
+        try {
+            Connection con = getConnection(); // Usamos tu misma conexión
+            if (con != null) {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+
+                if (rs.next()) {
+                    total = rs.getInt(1); // Obtiene el número del conteo
+                }
+                con.close(); // Cerramos para no dejar basura
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al contar en la tabla: " + nombreTabla);
+            e.printStackTrace();
+        }
+        return total;
     }
 
 }

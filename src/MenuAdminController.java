@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+
+
 import javafx.scene.layout.Pane;
 
 public class MenuAdminController {
@@ -27,6 +29,7 @@ public class MenuAdminController {
     void irAGestionProveedores(ActionEvent event) {
         cargarEnPanel("proveedores.fxml");
     }
+
 
     private void cargarEnPanel(String fxml) {
         try {

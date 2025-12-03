@@ -22,6 +22,11 @@ public class MenuClienteController {
         cargarEnPanel("historialCompras.fxml");
     }
 
+    @FXML
+    void irACarrito(ActionEvent event) {
+        cargarEnPanel("carrito.fxml");
+    }
+
     private void cargarEnPanel(String fxml) {
         try {
             // Cargar el archivo FXML hijo
