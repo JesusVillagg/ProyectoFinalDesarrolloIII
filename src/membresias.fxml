@@ -4,30 +4,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MembresiasController">
     <children>
-        <TableView layoutX="121.0" layoutY="281.0" prefHeight="200.0" prefWidth="518.0">
+        <TableView fx:id="tablaClientes" layoutX="57.0" layoutY="281.0" onMouseClicked="#seleccionarCliente" prefHeight="200.0" prefWidth="582.0">
             <columns>
-                <TableColumn prefWidth="69.60003662109375" text="ID Cliente" />
-                <TableColumn prefWidth="126.40003967285156" text="Nombre Cliente" />
-                <TableColumn prefWidth="105.60003662109375" text="Dirección" />
-                <TableColumn prefWidth="98.4000244140625" text="Teléfono" />
-            <TableColumn prefWidth="117.5999755859375" text="Email" />
+                <TableColumn fx:id="colId" prefWidth="69.60003662109375" text="ID Cliente" />
+                <TableColumn fx:id="colNombre" prefWidth="126.40003967285156" text="Nombre Cliente" />
+                <TableColumn fx:id="colDireccion" prefWidth="139.0" text="Dirección" />
+                <TableColumn fx:id="colTelefono" prefWidth="97.0" text="Teléfono" />
+                <TableColumn fx:id="colEmail" prefWidth="148.0" text="Email" />
             </columns>
         </TableView>
         <Label layoutX="121.0" layoutY="165.0" text="Dirección" />
         <Label layoutX="119.0" layoutY="123.0" text="Nombre Cliente" />
-        <javafx.scene.control.TextField layoutX="234.0" layoutY="119.0" />
-        <javafx.scene.control.TextField layoutX="234.0" layoutY="161.0" />
+
+        <TextField fx:id="txtNombre" layoutX="234.0" layoutY="119.0" prefWidth="200.0" />
+        <TextField fx:id="txtDireccion" layoutX="234.0" layoutY="161.0" prefWidth="200.0" />
+
         <Label layoutX="120.0" layoutY="214.0" text="Email" />
-        <javafx.scene.control.TextField layoutX="234.0" layoutY="210.0" />
-        <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
-        <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
-        <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
-        <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+        <TextField fx:id="txtEmail" layoutX="234.0" layoutY="210.0" prefWidth="200.0" />
+
+        <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
+        <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
+        <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
+        <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+
         <Label layoutX="275.0" layoutY="36.0" text="Gestión de Membresías ">
             <font>
                 <Font name="System Bold" size="12.0" />
