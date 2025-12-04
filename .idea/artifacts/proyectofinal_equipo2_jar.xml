@@ -1,17 +1,19 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="proyectofinal-equipo2:jar">
+  <artifact name="proyectofinal-equipo2:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/proyectofinal_equipo2_jar</output-path>
-    <root id="archive" name="proyectofinal-equipo2.jar">
-      <element id="module-output" name="proyectofinal-equipo2" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-j-9.4.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.web.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.base.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.fxml.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.media.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.swing.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.controls.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.graphics.jar" path-in-jar="/" />
+    <root id="root">
+      <element id="archive" name="proyectofinal-equipo2.jar">
+        <element id="module-output" name="proyectofinal-equipo2" />
+      </element>
+      <element id="library" level="project" name="mysql-connector-j-9.4.0" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx-swt.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.web.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.base.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.fxml.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.media.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.swing.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.controls.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-17.0.17/lib/javafx.graphics.jar" />
     </root>
   </artifact>
 </component>
