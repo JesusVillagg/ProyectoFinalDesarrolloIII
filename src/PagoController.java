@@ -57,7 +57,7 @@ public class PagoController {
                 mostrarAlerta("¡Pago Aprobado!\n\nTu tarjeta ha sido procesada exitosamente (Simulación).", Alert.AlertType.INFORMATION);
             }
 
-            ServicioCarrito.vaciarCarrito();
+            ServicioCarrito.vaciarCarrito(Sesion.getIdCliente());
             cerrarVentana();
         }
     }

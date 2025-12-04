@@ -114,7 +114,7 @@ public class CatalogoClienteController {
 
     private void agregarAlCarrito(String nombre, double precio) {
         ProductoCarrito nuevo = new ProductoCarrito(nombre, precio, 1);
-        ServicioCarrito.agregarProducto(nuevo);
+        ServicioCarrito.agregarProducto(nuevo, Sesion.getIdCliente());
         System.out.println("Agregado al carrito: " + nombre);
 
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
