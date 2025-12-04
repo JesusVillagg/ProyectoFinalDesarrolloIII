@@ -34,8 +34,6 @@ public class LoginController {
         System.out.println("Modo Admin activado: " + activo);
     }
 
-    // LoginController.java (Método ingresar() modificado)
-
     @FXML
     protected void ingresar() {
         String usuario = usuarioText.getText();
@@ -73,6 +71,8 @@ public class LoginController {
                             abrirMenuAdmin();
                         } else {
                             abrirMenuCliente();
+                            Sesion.setIdCliente(idEncontrado);
+                            ServicioCarrito.cargarCarritoUsuario(idEncontrado);
                         }
                     } else {
                         mostrarAlerta("Usuario/Correo o contraseña incorrectos.", "Error de acceso", Alert.AlertType.ERROR);

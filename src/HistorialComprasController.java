@@ -52,12 +52,12 @@ public class HistorialComprasController {
         listaVentas.clear();
         int miId = Sesion.getIdCliente();
         String sql = "SELECT v.id_venta, v.fecha, v.metodo_pago, v.direccion_entrega, v.id_cliente, " +
-                "COALESCE(GROUP_CONCAT(p.nombre SEPARATOR ', '), 'Sin productos') as resumen_productos, " +
-                "COALESCE(SUM(d.cantidad * d.precio_unitario), 0) as total_calculado " +
+                "GROUP_CONCAT(p.nombre SEPARATOR ', ') as resumen_productos, " +
+                "SUM(d.cantidad * d.precio_unitario) as total_calculado " +
                 "FROM Venta v " +
-                "LEFT JOIN Detalle_Venta d ON v.id_venta = d.id_venta " +
-                "LEFT JOIN Presentacion pre ON d.id_presentacion = pre.id_presentacion " +
-                "LEFT JOIN Producto p ON pre.id_producto = p.id_producto " +
+                "JOIN Detalle_Venta d ON v.id_venta = d.id_venta " +
+                "JOIN Presentacion pre ON d.id_presentacion = pre.id_presentacion " +
+                "JOIN Producto p ON pre.id_producto = p.id_producto " +
                 "WHERE v.id_cliente = ? ";
 
         if (!filtro.isEmpty()) {
@@ -97,8 +97,7 @@ public class HistorialComprasController {
 
     @FXML
     void buscarPedido() {
-        String texto = buscador.getText();
-        cargarPedidos(texto);
+        cargarPedidos(buscador.getText());
     }
 
     @FXML
@@ -109,20 +108,13 @@ public class HistorialComprasController {
         }
 
         Venta ultimoPedidoReal = listaVentas.get(0);
-
         Venta pedidoSeleccionado = tablaPedidos.getSelectionModel().getSelectedItem();
 
-        if (pedidoSeleccionado == null) {
-            mostrarAlerta("Por favor selecciona un pedido de la tabla.");
+        if (ultimoPedidoReal == null || ultimoPedidoReal.getIdVenta() != pedidoSeleccionado.getIdVenta()) {
+            mostrarAlerta("Solo puedes cancelar el último pedido.");
             return;
         }
-
-        if (pedidoSeleccionado.getIdVenta() != ultimoPedidoReal.getIdVenta()) {
-            mostrarAlerta("Acción denegada: Solo puedes cancelar tu último pedido realizado.");
-            return;
-        }
-
-        eliminarVentaDB(pedidoSeleccionado.getIdVenta());
+        eliminarVentaDB(ultimoPedidoReal.getIdVenta());
     }
 
     private void eliminarVentaDB(int idVenta) {
@@ -187,20 +179,6 @@ public class HistorialComprasController {
                 System.out.println("Error: No encontré el panelContenido.");
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void cambiarVentana(ActionEvent event, String fxml, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle(titulo);
-            stage.setScene(new Scene(root));
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

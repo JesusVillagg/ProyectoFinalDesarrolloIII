@@ -8,7 +8,6 @@ public class Venta {
     private String metodoPago;
     private String direccionEntrega;
     private int idCliente;
-    private List<DetalleVenta> detalles;
     private String productosResumen;
 
     public Venta(int idVenta, String fecha, double total, String metodoPago, String direccionEntrega, int idCliente,String productosResumen) {
@@ -19,12 +18,6 @@ public class Venta {
         this.direccionEntrega = direccionEntrega;
         this.idCliente = idCliente;
         this.productosResumen = productosResumen;
-        this.detalles = new ArrayList<>();
-    }
-
-
-    public void agregarDetalle(DetalleVenta detalle) {
-        this.detalles.add(detalle);
     }
 
     public int getIdVenta() { return idVenta; }
@@ -37,7 +30,7 @@ public class Venta {
         return productosResumen;
     }
 
-    public List<DetalleVenta> getDetalles() { return detalles; }
-
-
+    public void setProductosResumen(String productosResumen) {
+        this.productosResumen = productosResumen;
+    }
 }
