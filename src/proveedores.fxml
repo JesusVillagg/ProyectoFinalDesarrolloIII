@@ -48,6 +48,5 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-      <Button layoutX="33.0" layoutY="36.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-background-color: #F0FFF0; -fx-border-color: #808080; -fx-border-radius: 10;" text="Menú" />
     </children>
 </AnchorPane>
