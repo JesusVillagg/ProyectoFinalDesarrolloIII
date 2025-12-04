@@ -2,10 +2,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -13,9 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.*;
 
 public class CatalogoAdminController {
@@ -55,14 +49,12 @@ public class CatalogoAdminController {
     }
 
     private void cargarProveedores() {
-        // Carga IDs y Nombres al ComboBox para facilitar la selección
         listaProveedores.clear();
         String sql = "SELECT id_proveedor, nombre FROM Proveedor";
         try (Connection conn = ConexionDB.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                // Guardamos formato "1 - Distribuidora X"
                 listaProveedores.add(rs.getInt("id_proveedor") + " - " + rs.getString("nombre"));
             }
             comboProveedor.setItems(listaProveedores);
@@ -73,11 +65,13 @@ public class CatalogoAdminController {
 
     private void cargarProductos() {
         listaProductos.clear();
-        // Hacemos JOIN para traer datos de Producto y su Presentación
+        // CORRECCIÓN AQUÍ: Usamos LEFT JOIN para traer productos aunque no tengan presentación
         String sql = "SELECT p.id_producto, p.nombre, p.marca, p.id_proveedor, " +
-                "pre.id_presentacion, pre.precio, pre.stock " +
+                "IFNULL(pre.id_presentacion, 0) as id_presentacion, " +
+                "IFNULL(pre.precio, 0) as precio, " +
+                "IFNULL(pre.stock, 0) as stock " +
                 "FROM Producto p " +
-                "JOIN Presentacion pre ON p.id_producto = pre.id_producto";
+                "LEFT JOIN Presentacion pre ON p.id_producto = pre.id_producto";
 
         try (Connection conn = ConexionDB.getConnection();
              Statement stmt = conn.createStatement();
@@ -104,7 +98,6 @@ public class CatalogoAdminController {
     void agregarProducto(ActionEvent event) {
         if (!validarCampos()) return;
 
-        // Extraer ID del Proveedor del String "1 - Nombre"
         int idProv = Integer.parseInt(comboProveedor.getValue().split(" - ")[0]);
         String nombre = txtNombre.getText();
         String marca = txtMarca.getText();
@@ -174,12 +167,24 @@ public class CatalogoAdminController {
             stmtProd.executeUpdate();
 
             // 2. Actualizar Presentación
-            String sqlPre = "UPDATE Presentacion SET stock=?, precio=? WHERE id_presentacion=?";
-            PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
-            stmtPre.setInt(1, Integer.parseInt(txtStock.getText()));
-            stmtPre.setDouble(2, Double.parseDouble(txtPrecio.getText()));
-            stmtPre.setInt(3, productoSeleccionado.getIdPresentacion());
-            stmtPre.executeUpdate();
+            // Nota: Si el producto no tenía presentación (id_presentacion = 0), aquí deberíamos hacer un INSERT,
+            // pero por simplicidad asumimos UPDATE. Si falla, el usuario debería borrar y crear de nuevo.
+            if (productoSeleccionado.getIdPresentacion() != 0) {
+                String sqlPre = "UPDATE Presentacion SET stock=?, precio=? WHERE id_presentacion=?";
+                PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
+                stmtPre.setInt(1, Integer.parseInt(txtStock.getText()));
+                stmtPre.setDouble(2, Double.parseDouble(txtPrecio.getText()));
+                stmtPre.setInt(3, productoSeleccionado.getIdPresentacion());
+                stmtPre.executeUpdate();
+            } else {
+                // Lógica opcional: Insertar si no existía (Opcional para productos viejos corruptos)
+                String sqlPre = "INSERT INTO Presentacion (stock, precio, tamano_ml, id_producto) VALUES (?, ?, 100, ?)";
+                PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
+                stmtPre.setInt(1, Integer.parseInt(txtStock.getText()));
+                stmtPre.setDouble(2, Double.parseDouble(txtPrecio.getText()));
+                stmtPre.setInt(3, productoSeleccionado.getIdProducto());
+                stmtPre.executeUpdate();
+            }
 
             conn.commit();
             mostrarAlerta("Producto modificado correctamente.", Alert.AlertType.INFORMATION);
@@ -199,7 +204,6 @@ public class CatalogoAdminController {
             return;
         }
 
-        // Al borrar el producto, la BD borra la presentación por el "ON DELETE CASCADE"
         String sql = "DELETE FROM Producto WHERE id_producto = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -212,7 +216,7 @@ public class CatalogoAdminController {
             cargarProductos();
 
         } catch (SQLException e) {
-            mostrarAlerta("No se puede eliminar (probablemente ya tiene ventas asociadas).", Alert.AlertType.ERROR);
+            mostrarAlerta("No se puede eliminar (probablemente tiene ventas asociadas).", Alert.AlertType.ERROR);
         }
     }
 
@@ -225,7 +229,6 @@ public class CatalogoAdminController {
             txtPrecio.setText(String.valueOf(productoSeleccionado.getPrecio()));
             txtStock.setText(String.valueOf(productoSeleccionado.getStock()));
 
-            // Seleccionar el proveedor en el combo
             for (String item : comboProveedor.getItems()) {
                 if (item.startsWith(productoSeleccionado.getIdProveedor() + " -")) {
                     comboProveedor.setValue(item);
@@ -268,21 +271,5 @@ public class CatalogoAdminController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-    }
-    @FXML
-    void recargarInicio(ActionEvent event) {
-        try {
-            //cargar el archivo principal
-            Parent root = FXMLLoader.load(getClass().getResource("/menucliente.fxml"));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

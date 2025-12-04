@@ -1,104 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuAdminController">
-   <left>
-      <VBox prefHeight="386.0" prefWidth="142.0" style="-fx-background-color: #5A7D77;" BorderPane.alignment="CENTER">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuAdminController">
+   <children>
+      <!-- Barra Lateral -->
+      <VBox prefHeight="600.0" prefWidth="214.0" style="-fx-background-color: #5A7D77;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="48.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets left="40.0" top="30.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@imagenes/login1.png" />
-               </image>
-            </ImageView>
-            <Button mnemonicParsing="false" onAction="#irACatalogoAdmin" style="-fx-background-color: transparent;" text="Productos" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="25.0" right="15.0" top="50.0" />
-               </VBox.margin>
+            <!-- Logo de la Empresa (Reemplaza al texto anterior) -->
+            <Pane prefHeight="136.0" prefWidth="214.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="17.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <!-- Ajusta la ruta si tu imagen está en otra carpeta -->
+                        <Image url="@imagenes/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+
+            <!-- Botón INICIO -->
+            <Button mnemonicParsing="false" onAction="#irAInicio" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;" text="Inicio" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#irAMembresias" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="30.0" right="15.0" top="10.0" />
-               </VBox.margin>
+
+            <Button mnemonicParsing="false" onAction="#irACatalogoAdmin" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;" text="Productos" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#irAGestionProveedores" style="-fx-background-color: transparent;" text="Provedores" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="25.0" right="15.0" top="10.0" />
-               </VBox.margin>
+
+            <Button mnemonicParsing="false" onAction="#irAMembresias" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;" text="Clientes" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#regresarInicio" style="-fx-border-radius: 10; -fx-border-color: gray;" text="Volver a Login">
-               <VBox.margin>
-                  <Insets bottom="15.0" left="25.0" top="30.0" />
-               </VBox.margin>
+
+            <Button mnemonicParsing="false" onAction="#irAGestionProveedores" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;" text="Proveedores" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+
+            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+
+            <Button mnemonicParsing="false" onAction="#regresarInicio" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: #FFA9A5;" text="Cerrar Sesión" textFill="#363636">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Button>
          </children>
       </VBox>
-   </left>
-   <center>
-      <AnchorPane fx:id="panelContenido" prefHeight="420.0" prefWidth="458.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text layoutX="24.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido Administrador">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="186.0" fitWidth="293.0" layoutX="232.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imagenes/fondomenu.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="408.0" layoutY="109.0" text="Clientes Activos">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="275.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imagenes/iconoperfume.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="95.0" layoutX="430.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imagenes/personaicono.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="246.0" layoutY="107.0" text="Productos Totales">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="280.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="435.0" layoutY="151.0" prefHeight="27.0" prefWidth="49.0" text="0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+
+      <!-- Panel de Contenido -->
+      <Pane fx:id="panelContenido" layoutX="214.0" prefHeight="600.0" prefWidth="686.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

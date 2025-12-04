@@ -9,52 +9,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CatalogoAdminController">
+<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CatalogoAdminController">
    <children>
-      <TableView layoutX="103.0" layoutY="298.0" prefHeight="200.0" prefWidth="480.0">
-        <columns>
-          <TableColumn prefWidth="82.40000915527344" text="ID Producto" />
-          <TableColumn prefWidth="76.79998779296875" text="Nombre" />
-            <TableColumn text="Marca" />
-            <TableColumn prefWidth="72.80001831054688" text="Precio" />
-            <TableColumn minWidth="0.0" prefWidth="77.5999755859375" text="Stock" />
-            <TableColumn prefWidth="90.4000244140625" text="ID Proveedor" />
-        </columns>
+      <TableView fx:id="tablaProductos" layoutX="57.0" layoutY="298.0" onMouseClicked="#seleccionarProducto" prefHeight="200.0" prefWidth="573.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="82.4" text="ID Producto" />
+            <TableColumn fx:id="colNombre" prefWidth="121.0" text="Nombre" />
+            <TableColumn fx:id="colMarca" prefWidth="99.0" text="Marca" />
+            <TableColumn fx:id="colPrecio" prefWidth="85.0" text="Precio" />
+            <TableColumn fx:id="colStock" prefWidth="84.0" text="Stock" />
+            <TableColumn fx:id="colProveedor" prefWidth="99.0" text="ID Proveedor" />
+         </columns>
       </TableView>
-      <Label layoutX="107.0" layoutY="147.0" text="Precio Venta">
+
+      <Label layoutX="118.0" layoutY="149.0" text="Precio Venta" />
+      <Label layoutX="120.0" layoutY="114.0" text="Marca" />
+      <Label layoutX="118.0" layoutY="80.0" text="Nombre Perfume" />
+
+      <TextField fx:id="txtNombre" layoutX="234.0" layoutY="76.0" prefWidth="200.0" />
+      <TextField fx:id="txtMarca" layoutX="234.0" layoutY="110.0" prefWidth="200.0" />
+      <TextField fx:id="txtPrecio" layoutX="234.0" layoutY="145.0" prefWidth="200.0" promptText="0.00" />
+
+      <Label layoutX="122.0" layoutY="191.0" text="Stock" />
+      <TextField fx:id="txtStock" layoutX="234.0" layoutY="187.0" prefWidth="200.0" promptText="0" />
+
+      <Label layoutX="122.0" layoutY="228.0" text="ID Proveedor" />
+      <ComboBox fx:id="comboProveedor" layoutX="234.0" layoutY="224.0" prefHeight="26.0" prefWidth="200.0" promptText="Seleccione..." />
+
+      <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
+      <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarProducto" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
+      <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarProducto" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
+      <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+
+      <Label layoutX="323.0" layoutY="32.0" text="Gestión de Productos">
          <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="108.0" layoutY="112.0" text="Marca">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="108.0" layoutY="78.0" text="Nombre Perfume">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <javafx.scene.control.TextField layoutX="249.0" layoutY="75.0" />
-      <javafx.scene.control.TextField layoutX="249.0" layoutY="109.0" />
-      <javafx.scene.control.TextField layoutX="249.0" layoutY="144.0" />
-      <Label layoutX="110.0" layoutY="189.0" text="Stock">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <javafx.scene.control.TextField layoutX="249.0" layoutY="186.0" />
-      <Label layoutX="105.0" layoutY="226.0" text="ID Proveedor">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <ComboBox layoutX="249.0" layoutY="223.0" prefWidth="150.0" />
-      <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
-      <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
-      <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
-      <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
-      <Label layoutX="252.0" layoutY="28.0" text="Gestión de Productos">
-         <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="44.0" layoutY="28.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-background-color: #F0FFF0; -fx-border-color: #808080; -fx-border-radius: 10;" text="Menú" />
    </children>
 </AnchorPane>

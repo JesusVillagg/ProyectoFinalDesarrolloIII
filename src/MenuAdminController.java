@@ -5,15 +5,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-
-
 import javafx.scene.layout.Pane;
+import java.io.IOException;
 
 public class MenuAdminController {
 
     @FXML
     private Pane panelContenido;
+
+    @FXML
+    public void initialize() {
+        // Al abrir la ventana, cargamos automáticamente el Dashboard (Inicio)
+        irAInicio(null);
+    }
+
+    @FXML
+    void irAInicio(ActionEvent event) {
+        // Esta función carga el dashboard con los contadores
+        cargarEnPanel("dashboard.fxml");
+    }
 
     @FXML
     void irACatalogoAdmin(ActionEvent event) {
@@ -30,10 +40,10 @@ public class MenuAdminController {
         cargarEnPanel("proveedores.fxml");
     }
 
-
     private void cargarEnPanel(String fxml) {
         try {
             Parent vista = FXMLLoader.load(getClass().getResource(fxml));
+            // Limpiamos lo que había antes y ponemos la nueva vista
             panelContenido.getChildren().clear();
             panelContenido.getChildren().add(vista);
         } catch (IOException e) {
@@ -44,15 +54,11 @@ public class MenuAdminController {
 
     @FXML
     void regresarInicio(ActionEvent event) {
-        cambiarVentana(event, "loginMain.fxml", "Bienvenido a Casa de Jade");
-    }
-
-    private void cambiarVentana(ActionEvent event, String fxml, String titulo) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("loginMain.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle(titulo);
+            stage.setTitle("Bienvenido a Casa de Jade");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
