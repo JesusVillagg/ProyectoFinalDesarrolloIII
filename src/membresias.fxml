@@ -8,45 +8,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MembresiasController">
+<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MembresiasController">
     <children>
-        <TableView fx:id="tablaClientes" layoutX="57.0" layoutY="279.0" onMouseClicked="#seleccionarCliente" prefHeight="200.0" prefWidth="582.0">
+        <TableView fx:id="tablaClientes" layoutX="57.0" layoutY="281.0" onMouseClicked="#seleccionarCliente" prefHeight="200.0" prefWidth="582.0">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="69.60003662109375" text="ID Cliente" />
-                <TableColumn fx:id="colNombre" prefWidth="126.40003967285156" text="Nombre Cliente" />
-                <TableColumn fx:id="colDireccion" prefWidth="139.0" text="Dirección" />
-                <TableColumn fx:id="colTelefono" prefWidth="97.0" text="Teléfono" />
-                <TableColumn fx:id="colEmail" prefWidth="148.0" text="Email" />
+                <TableColumn fx:id="colId" prefWidth="69.6" text="ID Cliente" />
+                <TableColumn fx:id="colNombre" prefWidth="126.4" text="Nombre Cliente" />
+                <TableColumn fx:id="colDireccion" prefWidth="180.0" text="Dirección" />
+                <TableColumn fx:id="colEmail" prefWidth="200.0" text="Email" />
             </columns>
         </TableView>
-        <Label alignment="CENTER" layoutX="107.0" layoutY="146.0" text="Dirección">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <Label alignment="CENTER" layoutX="107.0" layoutY="104.0" text="Nombre Cliente">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
 
-        <TextField fx:id="txtNombre" alignment="CENTER" layoutX="233.0" layoutY="101.0" prefWidth="200.0" />
-        <TextField fx:id="txtDireccion" alignment="CENTER" layoutX="233.0" layoutY="143.0" prefWidth="200.0" />
+        <Label layoutX="121.0" layoutY="165.0" text="Dirección" />
+        <Label layoutX="119.0" layoutY="123.0" text="Nombre Cliente" />
 
-        <Label alignment="CENTER" layoutX="107.0" layoutY="195.0" text="Email">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <TextField fx:id="txtEmail" alignment="CENTER" layoutX="233.0" layoutY="192.0" prefWidth="200.0" />
+        <TextField fx:id="txtNombre" layoutX="234.0" layoutY="119.0" prefWidth="200.0" />
+        <TextField fx:id="txtDireccion" layoutX="234.0" layoutY="161.0" prefWidth="200.0" />
 
-        <Button alignment="CENTER" layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ACFFCB; -fx-border-color: #ACFFCB; -fx-border-radius: 10;" text="Agregar" />
-        <Button alignment="CENTER" layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
-        <Button alignment="CENTER" layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
-        <Button alignment="CENTER" layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+        <Label layoutX="120.0" layoutY="214.0" text="Email" />
+        <TextField fx:id="txtEmail" layoutX="234.0" layoutY="210.0" prefWidth="200.0" />
 
-        <Label layoutX="247.0" layoutY="32.0" text="Gestión de Membresías ">
+        <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
+        <Button layoutX="487.0" layoutY="122.0" mnemonicParsing="false" onAction="#modificarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #A4DFFF;" text="Modificar" />
+        <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
+        <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
+
+        <Label layoutX="275.0" layoutY="36.0" text="Gestión de Membresías ">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-      <Button layoutX="37.0" layoutY="32.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-border-color: #808080; -fx-background-color: #F0FFF0; -fx-border-radius: 10;" text="Menú" />
     </children>
 </AnchorPane>

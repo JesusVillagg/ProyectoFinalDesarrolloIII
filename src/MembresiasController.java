@@ -2,19 +2,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +20,6 @@ public class MembresiasController {
     @FXML private TableColumn<Cliente, Integer> colId;
     @FXML private TableColumn<Cliente, String> colNombre;
     @FXML private TableColumn<Cliente, String> colDireccion;
-    @FXML private TableColumn<Cliente, String> colTelefono;
     @FXML private TableColumn<Cliente, String> colEmail;
 
     @FXML private TextField txtNombre;
@@ -46,7 +39,6 @@ public class MembresiasController {
         colId.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("correo"));
     }
 
@@ -84,7 +76,7 @@ public class MembresiasController {
             return;
         }
 
-        // Asignamos una contraseña por defecto ya que este formulario no pide password
+        // Insertamos sin teléfono
         String sql = "INSERT INTO Cliente (nombre, direccion, correo, password) VALUES (?, ?, ?, '12345')";
 
         try (Connection conn = ConexionDB.getConnection();
@@ -113,6 +105,7 @@ public class MembresiasController {
             return;
         }
 
+        // Modificamos sin teléfono
         String sql = "UPDATE Cliente SET nombre = ?, direccion = ?, correo = ? WHERE id_cliente = ?";
 
         try (Connection conn = ConexionDB.getConnection();
@@ -156,7 +149,7 @@ public class MembresiasController {
                 cargarClientes();
             }
 
-        } catch (SQLException e) { // Seguramente fallará si el cliente tiene ventas por las FK
+        } catch (SQLException e) {
             mostrarAlerta("No se puede eliminar: El cliente tiene historial de compras.", Alert.AlertType.ERROR);
         }
     }
@@ -186,21 +179,5 @@ public class MembresiasController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-    }
-    @FXML
-    void recargarInicio(ActionEvent event) {
-        try {
-            //cargar el archivo principal
-            Parent root = FXMLLoader.load(getClass().getResource("/menucliente.fxml"));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

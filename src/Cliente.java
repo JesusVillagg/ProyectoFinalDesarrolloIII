@@ -3,16 +3,15 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String correo;
-    private String telefono;
 
     public Cliente(int idCliente, String nombre, String direccion, String correo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
-        this.telefono = "N/A";
     }
 
+    // Getters y Setters
     public int getIdCliente() { return idCliente; }
     public void setIdCliente(int idCliente) { this.idCliente = idCliente; }
 
@@ -24,7 +23,4 @@ public class Cliente {
 
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }
-
-    public String getTelefono() { return telefono; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
 }
