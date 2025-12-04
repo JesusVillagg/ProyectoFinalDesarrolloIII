@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="450.0" style="-fx-background-color: #5A7D77;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PagoController">
+    <children>
+        <!-- Encabezado con Logo (Opcional si tienes la imagen) -->
+        <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <!-- Asegúrate de que la ruta sea correcta o bórrala si no carga -->
+                <Image url="@imagenes/logo.png" />
+            </image>
+        </ImageView>
+
+        <Label layoutX="140.0" layoutY="35.0" text="Finalizar Compra" textFill="WHITE">
+            <font>
+                <Font name="Bookshelf Symbol 7" size="28.0" />
+            </font>
+        </Label>
+
+        <!-- Total a Pagar -->
+        <Label fx:id="lblTotalPagar" alignment="CENTER" layoutX="50.0" layoutY="90.0" prefWidth="350.0" text="Total: $0.00" textFill="#acffcb">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <!-- Selección de Método -->
+        <Label layoutX="40.0" layoutY="140.0" text="Método de Pago:" textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+
+        <RadioButton fx:id="rbEfectivo" layoutX="40.0" layoutY="170.0" mnemonicParsing="false" selected="true" text="Efectivo / Depósito" textFill="WHITE">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <toggleGroup>
+                <ToggleGroup fx:id="grupoPago" />
+            </toggleGroup>
+        </RadioButton>
+
+        <RadioButton fx:id="rbTarjeta" layoutX="220.0" layoutY="170.0" mnemonicParsing="false" text="Tarjeta Crédito/Débito" textFill="WHITE" toggleGroup="$grupoPago">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </RadioButton>
+
+        <!-- Panel de Tarjeta (Se muestra/oculta) -->
+        <VBox fx:id="boxTarjeta" layoutX="35.0" layoutY="210.0" prefHeight="180.0" prefWidth="380.0" spacing="10.0" style="-fx-background-color: rgba(255, 255, 255, 0.15); -fx-background-radius: 10; -fx-padding: 15;" visible="false">
+            <children>
+                <Label text="Datos de la Tarjeta (Simulación)" textFill="#f2f2f2">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtTitular" promptText="Nombre del Titular" style="-fx-background-radius: 5;" />
+                <TextField fx:id="txtNumero" promptText="Número de Tarjeta (16 dígitos)" style="-fx-background-radius: 5;" />
+                <AnchorPane prefHeight="40.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="txtVencimiento" layoutX="0.0" prefWidth="160.0" promptText="MM/AA" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="txtCVV" layoutX="180.0" prefWidth="160.0" promptText="CVV" style="-fx-background-radius: 5;" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+
+        <!-- Botones de Acción -->
+        <Button fx:id="btnPagar" layoutX="240.0" layoutY="420.0" mnemonicParsing="false" onAction="#procesarPago" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #ACFFCB; -fx-cursor: hand; -fx-background-radius: 8;" text="Pagar">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
+
+        <Button layoutX="60.0" layoutY="420.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #FFA9A5; -fx-cursor: hand; -fx-background-radius: 8;" text="Cancelar">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+
+    </children>
+</AnchorPane>
