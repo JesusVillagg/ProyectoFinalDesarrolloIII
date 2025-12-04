@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 
 import java.io.IOException;
@@ -40,6 +42,29 @@ public class CarritoController {
            colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
            colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
 
+           tablaCarrito.setEditable(true);
+
+           colCantidad.setCellFactory(column -> new TextFieldTableCell<>(new IntegerStringConverter()));
+
+           colCantidad.setOnEditCommit(event -> {
+               ProductoCarrito producto = event.getRowValue();
+               int nuevaCantidad = event.getNewValue();
+
+               if (nuevaCantidad > 0) {
+                   producto.setCantidad(nuevaCantidad);
+
+                   tablaCarrito.refresh();
+                   calcularTotales();
+               } else {
+                   Alert error = new Alert(Alert.AlertType.WARNING);
+                   error.setContentText("La cantidad debe ser mayor a 0.");
+                   error.show();
+                   tablaCarrito.refresh();
+               }
+           });
+
+           lblEnvio.setText(String.format("$%.2f", ENVIO_FIJO));
+           calcularTotales();
 
        }
     @FXML
@@ -164,18 +189,14 @@ public class CarritoController {
         }
 
         try {
-            // Cargar la vista de pago
             FXMLLoader loader = new FXMLLoader(getClass().getResource("pago.fxml"));
             Parent root = loader.load();
 
-            // Opción: Abrir ventana nueva
             Stage stage = new Stage();
             stage.setTitle("Pasarela de Pago - Casa de Jade");
             stage.setScene(new Scene(root));
             stage.show();
 
-            // (Opcional) Si quieres cerrar el carrito al abrir pago, descomenta esto:
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
 
         } catch (IOException e) {
             e.printStackTrace();

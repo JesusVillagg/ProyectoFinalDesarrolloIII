@@ -12,9 +12,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="299.0" prefWidth="478.0" style="-fx-background-color: #5A7D77;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <ImageView fitHeight="128.0" fitWidth="192.0" layoutX="-27.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Downloads/logo%20(1).png" />
-         </image>
       </ImageView>
       <Label layoutX="120.0" layoutY="32.0" text="Bienvenido a Casa de Jade" textFill="WHITE">
          <font>

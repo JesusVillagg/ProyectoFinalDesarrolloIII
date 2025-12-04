@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MembresiasController">
+<AnchorPane prefHeight="533.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MembresiasController">
     <children>
         <TableView fx:id="tablaClientes" layoutX="57.0" layoutY="281.0" onMouseClicked="#seleccionarCliente" prefHeight="200.0" prefWidth="582.0">
             <columns>
@@ -19,13 +19,22 @@
             </columns>
         </TableView>
 
-        <Label layoutX="121.0" layoutY="165.0" text="Dirección" />
-        <Label layoutX="119.0" layoutY="123.0" text="Nombre Cliente" />
+        <Label layoutX="107.0" layoutY="163.0" text="Dirección">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="106.0" layoutY="121.0" text="Nombre Cliente">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
 
         <TextField fx:id="txtNombre" layoutX="234.0" layoutY="119.0" prefWidth="200.0" />
         <TextField fx:id="txtDireccion" layoutX="234.0" layoutY="161.0" prefWidth="200.0" />
 
-        <Label layoutX="120.0" layoutY="214.0" text="Email" />
+        <Label layoutX="107.0" layoutY="212.0" text="Email">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
         <TextField fx:id="txtEmail" layoutX="234.0" layoutY="210.0" prefWidth="200.0" />
 
         <Button layoutX="487.0" layoutY="75.0" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ACFFCB;" text="Agregar" />
@@ -33,9 +42,9 @@
         <Button layoutX="487.0" layoutY="174.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFA9A5;" text="Eliminar" />
         <Button layoutX="487.0" layoutY="223.0" mnemonicParsing="false" onAction="#limpiarFormulario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #FFF299;" text="Limpiar" />
 
-        <Label layoutX="275.0" layoutY="36.0" text="Gestión de Membresías ">
+        <Label layoutX="247.0" layoutY="37.0" text="Gestión de Membresías ">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="18.0" />
             </font>
         </Label>
     </children>

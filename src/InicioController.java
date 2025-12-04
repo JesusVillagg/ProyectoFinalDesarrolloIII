@@ -21,9 +21,8 @@ public class InicioController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
 
-            // AQUÍ PASA LA MAGIA: Obtenemos el controlador y configuramos el modo
             LoginController controller = loader.getController();
-            controller.setModoAdmin(esAdmin); // Le decimos: "¿Eres admin? Sí/No"
+            controller.setModoAdmin(esAdmin);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Casa de Jade - " + titulo);

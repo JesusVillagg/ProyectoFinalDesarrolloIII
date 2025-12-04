@@ -11,7 +11,6 @@ public class Cliente {
         this.correo = correo;
     }
 
-    // Getters y Setters
     public int getIdCliente() { return idCliente; }
     public void setIdCliente(int idCliente) { this.idCliente = idCliente; }
 

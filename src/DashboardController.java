@@ -18,14 +18,14 @@ public class DashboardController {
         try (Connection conn = ConexionDB.getConnection();
              Statement stmt = conn.createStatement()) {
 
-            // 1. Contar Productos
+            // contar productos
             ResultSet rsProd = stmt.executeQuery("SELECT COUNT(*) FROM Producto");
             if (rsProd.next()) {
                 lblTotalProductos.setText(String.valueOf(rsProd.getInt(1)));
             }
             rsProd.close();
 
-            // 2. Contar Clientes
+            // contar clientes
             ResultSet rsCli = stmt.executeQuery("SELECT COUNT(*) FROM Cliente");
             if (rsCli.next()) {
                 lblTotalClientes.setText(String.valueOf(rsCli.getInt(1)));

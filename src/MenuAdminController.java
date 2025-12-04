@@ -15,13 +15,11 @@ public class MenuAdminController {
 
     @FXML
     public void initialize() {
-        // Al abrir la ventana, cargamos automáticamente el Dashboard (Inicio)
         irAInicio(null);
     }
 
     @FXML
     void irAInicio(ActionEvent event) {
-        // Esta función carga el dashboard con los contadores
         cargarEnPanel("dashboard.fxml");
     }
 
@@ -43,7 +41,6 @@ public class MenuAdminController {
     private void cargarEnPanel(String fxml) {
         try {
             Parent vista = FXMLLoader.load(getClass().getResource(fxml));
-            // Limpiamos lo que había antes y ponemos la nueva vista
             panelContenido.getChildren().clear();
             panelContenido.getChildren().add(vista);
         } catch (IOException e) {

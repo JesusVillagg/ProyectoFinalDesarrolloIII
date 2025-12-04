@@ -11,7 +11,7 @@ public class ServicioCarrito {
 
     public static void cargarCarritoUsuario(int idCliente) {
         productosEnCarrito.clear();
-        String sql = "SELECT p.nombre, p.precio, c.cantidad, pre.id_presentacion " +
+        String sql = "SELECT p.nombre, pre.precio AS precio_final, c.cantidad, pre.id_presentacion " +
                 "FROM Carrito c " +
                 "JOIN Presentacion pre ON c.id_presentacion = pre.id_presentacion " +
                 "JOIN Producto p ON pre.id_producto = p.id_producto " +
@@ -26,7 +26,7 @@ public class ServicioCarrito {
             while(rs.next()) {
                 ProductoCarrito pc = new ProductoCarrito(
                         rs.getString("nombre"),
-                        rs.getDouble("precio"),
+                        rs.getDouble("precio_final"),
                         rs.getInt("cantidad")
 
                 );
@@ -100,9 +100,9 @@ public class ServicioCarrito {
     private static int buscarIdPresentacion(Connection conn, String nombre) throws SQLException {
         String sql = "SELECT pre.id_presentacion FROM Presentacion pre " +
                 "JOIN Producto p ON pre.id_producto = p.id_producto " +
-                "WHERE p.nombre = ? LIMIT 1";
+                "WHERE LOWER(p.nombre) = LOWER(?) LIMIT 1";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, nombre);
+        ps.setString(1, nombre.trim());
         ResultSet rs = ps.executeQuery();
         if (rs.next()) return rs.getInt("id_presentacion");
         return 0;

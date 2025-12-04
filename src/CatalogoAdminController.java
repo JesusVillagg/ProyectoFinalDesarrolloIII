@@ -122,8 +122,8 @@ public class CatalogoAdminController {
                 idGenerado = rsKeys.getInt(1);
             }
 
-            String sqlPre = "INSERT INTO Presentacion (stock, precio, tamano_ml, id_producto) VALUES (?, ?, 100, ?)";
-            PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
+            String sqlPresentacion = "INSERT INTO presentacion (stock, precio, id_producto) VALUES (?, ?, ?)";
+            PreparedStatement stmtPre = conn.prepareStatement(sqlPresentacion);
             stmtPre.setInt(1, stock);
             stmtPre.setDouble(2, precio);
             stmtPre.setInt(3, idGenerado);
@@ -157,7 +157,7 @@ public class CatalogoAdminController {
             conn = ConexionDB.getConnection();
             conn.setAutoCommit(false);
 
-            // 1. Actualizar Producto
+            // Actualizar Producto
             String sqlProd = "UPDATE Producto SET nombre=?, marca=?, id_proveedor=? WHERE id_producto=?";
             PreparedStatement stmtProd = conn.prepareStatement(sqlProd);
             stmtProd.setString(1, txtNombre.getText());
@@ -166,9 +166,6 @@ public class CatalogoAdminController {
             stmtProd.setInt(4, productoSeleccionado.getIdProducto());
             stmtProd.executeUpdate();
 
-            // 2. Actualizar Presentación
-            // Nota: Si el producto no tenía presentación (id_presentacion = 0), aquí deberíamos hacer un INSERT,
-            // pero por simplicidad asumimos UPDATE. Si falla, el usuario debería borrar y crear de nuevo.
             if (productoSeleccionado.getIdPresentacion() != 0) {
                 String sqlPre = "UPDATE Presentacion SET stock=?, precio=? WHERE id_presentacion=?";
                 PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
@@ -177,7 +174,6 @@ public class CatalogoAdminController {
                 stmtPre.setInt(3, productoSeleccionado.getIdPresentacion());
                 stmtPre.executeUpdate();
             } else {
-                // Lógica opcional: Insertar si no existía (Opcional para productos viejos corruptos)
                 String sqlPre = "INSERT INTO Presentacion (stock, precio, tamano_ml, id_producto) VALUES (?, ?, 100, ?)";
                 PreparedStatement stmtPre = conn.prepareStatement(sqlPre);
                 stmtPre.setInt(1, Integer.parseInt(txtStock.getText()));

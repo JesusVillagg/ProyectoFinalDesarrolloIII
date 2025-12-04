@@ -13,7 +13,7 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    // Getters
+
     public String getNombre() { return nombre; }
     public String getMarca() { return marca; }
     public double getPrecio() { return precio; }

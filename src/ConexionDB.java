@@ -13,10 +13,10 @@ public class ConexionDB {
     public static Connection getConnection() {
         Connection conexion = null;
         try {
-            // 1. Cargar el driver de MySQL
+            // Cargar el driver de MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // 2. Intentar conectar
+            //Intentar conectar
             conexion = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("¡Conexión exitosa a la Base de Datos!");
 
@@ -35,15 +35,15 @@ public class ConexionDB {
         String sql = "SELECT COUNT(*) FROM " + nombreTabla;
 
         try {
-            Connection con = getConnection(); // Usamos tu misma conexión
+            Connection con = getConnection();
             if (con != null) {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 
                 if (rs.next()) {
-                    total = rs.getInt(1); // Obtiene el número del conteo
+                    total = rs.getInt(1);
                 }
-                con.close(); // Cerramos para no dejar basura
+                con.close();
             }
         } catch (SQLException e) {
             System.err.println("Error al contar en la tabla: " + nombreTabla);

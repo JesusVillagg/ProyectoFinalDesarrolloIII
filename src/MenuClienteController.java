@@ -27,6 +27,22 @@ public class MenuClienteController {
         cargarEnPanel("carrito.fxml");
     }
 
+    @FXML
+    void irAInicio(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("menucliente.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void cargarEnPanel(String fxml) {
         try {
 

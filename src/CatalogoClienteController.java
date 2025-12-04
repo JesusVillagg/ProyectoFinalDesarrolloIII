@@ -1,7 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -77,11 +76,18 @@ public class CatalogoClienteController {
             img.setFitWidth(120);
             img.setFitHeight(120);
             img.setPreserveRatio(true);
-            try {
-                String ruta = "/imagenes/" + p.getImagen();
-                img.setImage(new Image(getClass().getResourceAsStream(ruta)));
-            } catch (Exception e) {
-                System.out.println("No se encontró imagen para: " + p.getNombre());
+
+            String nombreArchivo = p.getImagen();
+            String ruta = "/imagenes/" + nombreArchivo;
+
+
+            java.io.InputStream flujoImagen = getClass().getResourceAsStream(ruta);
+
+            if (flujoImagen != null) {
+                img.setImage(new Image(flujoImagen));
+            } else {
+                System.err.println("ERROR CRÍTICO: No se encontró la imagen en la ruta: " + ruta);
+
             }
 
 

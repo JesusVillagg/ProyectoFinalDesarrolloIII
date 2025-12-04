@@ -8,7 +8,9 @@ public class ProductoDAO {
     public List<Producto> listarProductos() {
         List<Producto> lista = new ArrayList<>();
 
-        String sql = "SELECT id_producto, nombre, marca, precio, imagen FROM producto";
+        String sql = "SELECT p.id_producto, p.nombre, p.marca, pre.precio, p.imagen " +
+                "FROM producto p " +
+                "JOIN presentacion pre ON p.id_producto = pre.id_producto";
 
         try (Connection con = ConexionDB.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);

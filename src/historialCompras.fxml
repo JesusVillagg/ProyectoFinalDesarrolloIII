@@ -44,7 +44,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="31.0" layoutY="20.0" mnemonicParsing="false" onAction="#recargarInicio" style="-fx-background-color: #F0FFF0; -fx-border-color: #808080; -fx-border-radius: 10;" text="Menú" />
       <HBox layoutX="213.0" layoutY="111.0" prefHeight="43.0" prefWidth="259.0">
          <children>
             <TextField fx:id="buscador" alignment="CENTER" />

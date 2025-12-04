@@ -130,10 +130,10 @@ public class PagoController {
     private int buscarIdProducto(Connection conn, String nombreProducto) throws SQLException {
         String sql = "SELECT pre.id_presentacion FROM Presentacion pre " +
                 "JOIN Producto p ON pre.id_producto = p.id_producto " +
-                "WHERE p.nombre = ? LIMIT 1";
+                "WHERE p.nombre = LOWER(?) LIMIT 1";
 
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, nombreProducto);
+        ps.setString(1, nombreProducto.trim());
         ResultSet rs = ps.executeQuery();
         if (rs.next()) return rs.getInt("id_presentacion");
         return 0;
